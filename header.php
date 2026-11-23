@@ -99,6 +99,20 @@
             </div>
         </div>
     </header>
-
+    <!-- Cintilla de cuenta regresiva, podcast violeta y oro -->
+    <aside class="podcast-strip" arial-label="Anuncio del Podcast semanal Violeta y Oro">
+        <div class="podcast-strip-container">
+            <i class="fas fa-podcast" aria-hidden="true"></i>
+            <span class="podcast-strip-text">
+                Próximo <strong>Violeta y Oro</strong>
+                <span class="countdown" id="podcastCountdown" aria-live="polite" aria-atomic="true">
+                <span class="countdown-unit" id="cd-days">0</span><span class="countdown-label">d</span>
+                <span class="countdown-unit" id="cd-hours">0</span><span class="countdown-label">h</span>
+                <span class="countdown-unit" id="cd-mins">0</span><span class="countdown-label">m</span>
+                <span class="countdown-unit" id="cd-secs">0</span><span class="countdown-label">s</span>
+            </span>
+            <a href="#" class="podcast-strip-cta">Escuchar</a>
+        </div>
+    </aside>
 </body>
 </html>
