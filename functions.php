@@ -71,3 +71,6 @@ function cigu_enqueue_assets(){
     );
 }
 add_action('wp_enqueue_scripts', 'cigu_enqueue_assets');
+
+# Se manda a llamar el archivo dónde nos permite modificar el Baner Principal
+require_once get_template_directory() . '/inc/hero-metabox.php';
