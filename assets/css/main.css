@@ -88,6 +88,14 @@
             padding: 0 2rem;
             gap: 1rem;
         }
+        body.admin-bar header {
+            top: 32px;
+        }
+        @media screen and (max-width: 782px) {
+            body.admin-bar header {
+                top: 46px;
+            }
+        }
 
         .logo { display: flex; align-items: center; gap: 1rem; }
         .logo img { height: 60px; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2)); }
