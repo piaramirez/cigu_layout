@@ -1,4 +1,4 @@
-        document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('DOMContentLoaded', function () {
             /* ============ MENÚ ============ */
             const menuToggle = document.querySelector('.menu-toggle');
             const mainNav = document.getElementById('mainNav');
@@ -214,4 +214,57 @@
                     }
                 });
             }
+
+
+                        /* ============ CUENTA REGRESIVA PODCAST ============ */
+            (function initPodcastCountdown() {
+                const elDays = document.getElementById('cd-days');
+                const elHours = document.getElementById('cd-hours');
+                const elMins = document.getElementById('cd-mins');
+                const elSecs = document.getElementById('cd-secs');
+                if (!elDays) return;
+
+                // 👇 Ajusta aquí la fecha/hora del próximo episodio
+                // Por defecto: próximo viernes a las 18:00 (hora local)
+                function getNextEpisodeDate() {
+                    const now = new Date();
+                    const target = new Date(now);
+                    const day = now.getDay(); // 0=Dom, 5=Vie
+                    const daysUntilFriday = (5 - day + 7) % 7;
+                    target.setDate(now.getDate() + daysUntilFriday);
+                    target.setHours(18, 0, 0, 0);
+                    // Si ya pasó la hora del viernes, saltar al siguiente viernes
+                    if (target <= now) {
+                        target.setDate(target.getDate() + 7);
+                    }
+                    return target;
+                }
+
+                let targetDate = getNextEpisodeDate();
+                const pad = n => String(n).padStart(2, '0');
+
+                function tick() {
+                    const now = new Date();
+                    let diff = targetDate - now;
+
+                    // Si llegó a cero, reiniciar al siguiente episodio
+                    if (diff <= 0) {
+                        targetDate = getNextEpisodeDate();
+                        diff = targetDate - now;
+                    }
+
+                    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+                    const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+                    const mins = Math.floor((diff / (1000 * 60)) % 60);
+                    const secs = Math.floor((diff / 1000) % 60);
+
+                    elDays.textContent = pad(days);
+                    elHours.textContent = pad(hours);
+                    elMins.textContent = pad(mins);
+                    elSecs.textContent = pad(secs);
+                }
+
+                tick();
+                setInterval(tick, 1000);
+            })();
         });
