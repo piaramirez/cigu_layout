@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html <?php
 /**
+ * Plantilla Header
+ * Documentación:
  * https://developer.wordpress.org/reference/functions/language_attributes/
  * https://developer-wordpress-org.translate.goog/reference/functions/bloginfo/?_x_tr_sl=en&_x_tr_tl=es&_x_tr_hl=es&_x_tr_pto=tc
  * https://developer.wordpress.org/reference/functions/wp_head/
@@ -114,5 +116,3 @@
             <a href="#" class="podcast-strip-cta">Escuchar</a>
         </div>
     </aside>
-</body>
-</html>
