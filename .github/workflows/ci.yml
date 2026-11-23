@@ -2,9 +2,9 @@ name: CI - Validador para tema de wordpress
 
 on:
   push:
-    branches: [ main ]
+    branches: [ main, dev ]
   pull_request:
-    branches: [ main ]
+    branches: [ main, dev ]
 
 jobs:
   validate_theme:
