@@ -1,0 +1,46 @@
+name: CI - Validador para tema de wordpress
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  validate_theme:
+    name: Validar PHP, Estructura WP y Encoding
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Descargar el código del repo
+        uses: actions/checkout@v4
+
+      - name: Configurar PHP 8.3
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.3'
+          coverage: none
+
+      - name: Verificamos sintaxis de todos los archivos de php
+        run: |
+          find . -type f -name "*.php" -not -path "./node_modules/*" -not -path "./recursos/*" -print0 | xargs -0 -n1 -P4 php -l
+
+      - name: Verificamos que no se guarde en UTF-16 ni con BOM
+        run: |
+          if file $(find . -type f \( -name "*.php" -o -name "*.css" -o -name "*.js" \) -not -path "./node_modules/*") | grep -iE "UTF-16|with BOM"; then
+            echo "Se detectaron archivos guardados en UTF-16 o con BOM. Conviértelos a UTF-8 sin BOM."
+            exit 1
+          else
+            echo "Todos los archivos están en UTF-8 sin BOM."
+          fi
+
+      - name: Verificar archivos obligatorios de un Tema de WordPress
+        run: |
+          for file in style.css functions.php index.php; do
+            if [ ! -f "$file" ]; then
+              echo "Falta el archivo obligatorio de WordPress: $file"
+              exit 1
+            fi
+          done
+          grep -q "Theme Name:" style.css || (echo "style.css no tiene 'Theme Name:'" && exit 1)
+          echo "Estructura base de WordPress válida."
