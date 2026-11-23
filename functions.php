@@ -71,3 +71,7 @@ function cigu_enqueue_assets(){
     );
 }
 add_action('wp_enqueue_scripts', 'cigu_enqueue_assets');
+/**
+ * En esta parte mandamos a llamar al archivo cutomizer, el cual nos permite editar la seccion de baner desde el boton de personalizar
+ */
+require_once get_template_directory() . '/inc/customizer.php';
