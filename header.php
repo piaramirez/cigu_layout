@@ -24,7 +24,7 @@
      <header>
         <div class="header-container">
             <a href="<?php echo esc_url(home_url('/')); ?>" class="logo" style="text-decoration: none;">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Escudo-UNAM-escalable.svg/1200px-Escudo-UNAM-escalable.svg.png" alt="Escudo de la UNAM">
+                <img src="https://www.unam.mx/sites/default/files/images/unam.svg" alt="Escudo de la UNAM">
                 <div class="logo-text">
                     <p class="logo-title">Coordinación de Igualdad de Género</p>
                     <p class="logo-subtitle">Universidad Nacional Autónoma de México</p>
