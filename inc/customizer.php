@@ -401,6 +401,52 @@ function cigu_customize_register( $wp_customize ) {
 				'type'        => 'text',
 			)
 		);
+		//	Editamos los titulos
+		$wp_customize->add_setting("cigu_area_{$i}_title", array(
+			'default'			=>	$areas_defaults[$i]['title'],
+			'sanitize_callback' => 'sanitize_text_field',			
+		));
+		$wp_customize->add_control("cigu_area_{$i}_title", array(
+			'label'		=> sprintf(__('Área %d Título', 'cigu-theme'), $i),
+			'section'	=> 'cigu_areas_section',
+			'type' 		=> 'text',
+		));
+		//Ediamos la descripcion
+		$wp_customize->add_setting("cigu_area_{$i}_desc", array(
+			'default'			=> $areas_defaults[$i]['desc'],
+			'sanitize_callback'	=>	'sanitize_textarea_field',
+		));
+		$wp_customize->add_control("cigu_area_{$i}_desc", array(
+			'label'		=> sprintf(__('Área Descripción %d:', 'cigu-theme'),$i),
+			'section' 	=> 'cigu_areas_section',
+			'type'		=> 'textarea',
+		));
+		// Editamos el text de enlace
+		$wp_customize->add_setting("cigu_area_{$i}_link_text", array(
+			'default'			=> $areas_defaults[$i]['link_text'],
+			'sanitize_callback' => 'sanitize_text_field',
+		));
+		$wp_customize->add_control("cigu_area_{$i}_link_text", array(
+			'label'			=> sprintf(__('texto del botón', 'cigu-theme'), $i),
+			'section' 		=> 'cigu_areas_section',
+			'type'			=> 'text',
+		));
+		// URL del Enlace
+		$wp_customize->add_setting("cigu_area_{$i}_url", array(
+			'default'				=> $areas_defaults[$i]['url'],
+			'sanitize_callback' 	=> 'esc_url_raw',
+		));
+		$wp_customize->add_control("cigu_area_{$i}_url", array(
+			'label' 		=> sprintf(__('Url de la card:', 'cigu-theme'), $i),
+			'section' 		=> 'cigu_areas_section',
+			'type'			=> 'url,'
+		));
+	}
+	// Lapicito cute
+	if(isset($wp_customize->selective_refresh)){
+		$wp_customize->selective_refresh->add_partial(
+			'cigu_areas_section_title', array('selector' => '#areas-title',
+			));
 	}
 
 }
