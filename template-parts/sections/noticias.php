@@ -3,15 +3,22 @@
  * Template Part: Carrucel de destacados
  *
  * Renderiza el carrucel de la página de inicio obteniendo los valores
- * configurados desde el Personalizador de WordPress.
+ * configurados desde el Personalizador de WordPress
+ * Configuración visual y dimensiones del carrusel desde el ustomicer
  *
- * @package    cigu-theme
- * @subpackage Template_Parts\Sections
- * @author     Área de Sistemas CIGU
- * @since      1.0.0
- * @link       https://developer.wordpress.org/reference/functions/get_theme_mod/
+ * @package     cigu-theme
+ * @subpackage  Template_Parts\Sections
+ * @author      Área de Sistemas CIGU
+ * @since       1.0.0
+ * @link        https://developer.wordpress.org/reference/functions/get_theme_mod/
+ * @var bool    $show_carousel Determina si la sección renderiza en el inicio
+ * @var int     $max_width Ancho máximo del contenedor del carrusel en píxeles
+ * @var int     $img_height Altura de las imagenes de cada diapositiva en píxeles
+ * @var string  $object_fit Modo de ajuste Css de la imagen (cover/contanier y fill)
+ * @var int     $slides_count Número total de diapositivas activas (1 a 10).
  * 
- */
+ *  
+ */ 
 
 //Noas permite ver si la secciómn está activa o no
 $show_carousel = get_theme_mod('cigu_carousel_show', true);

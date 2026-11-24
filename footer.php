@@ -1,8 +1,14 @@
 <?php
 /**
- * Plantilla Footer
- * Documentación:
- * https://developer.wordpress.org/reference/functions/wp_footer/
+ * Plantilla de Pie de Página (Footer).
+ * Muestra las columnas que están en el pía de página: redes socailes, 
+ * enlces rápidos, de interes y contactos, ejecuta el hook wp_footer
+ * 
+ * @package     cigu-theme
+ * @author      Área de Sistemas CIGU
+ * @since       1.0.0
+ * @link        https://developer.wordpress.org/themes/basics/template-files/#template-partials
+ * @link        https://developer.wordpress.org/reference/functions/wp_footer/
  */
 ?>
 <!-- Empieza el footer-->

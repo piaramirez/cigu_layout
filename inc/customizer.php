@@ -4,9 +4,11 @@
  *
  * Registra las secciones, ajustes y controles editables del tema.
  *
- * @package    cigu-theme
- * @subpackage Includes
- * @since      1.0.0
+ * @package    	cigu-theme
+ * @subpackage 	Includes
+ * @author      Área de Sistemas CIGU
+ * @since      	1.0.0
+ * @link 		https://developer.wordpress.org/themes/classic-themes/customize-api/customizer-objects/
  */
 
 if ( ! defined( 'ABSPATH' ) ) {

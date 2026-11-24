@@ -1,14 +1,21 @@
 <!DOCTYPE html>
 <html <?php
 /**
- * Plantilla Header
- * Documentación:
- * https://developer.wordpress.org/reference/functions/language_attributes/
- * https://developer-wordpress-org.translate.goog/reference/functions/bloginfo/?_x_tr_sl=en&_x_tr_tl=es&_x_tr_hl=es&_x_tr_pto=tc
- * https://developer.wordpress.org/reference/functions/wp_head/
- * https://developer.wordpress.org/reference/functions/body_class/
- * https://developer.wordpress.org/reference/functions/wp_body_open/
- * https://developer.wordpress.org/reference/functions/esc_url/
+ * Plantilla de Encabezado
+ * 
+ * Muestra la sección <head>, Muestra el menú.
+ * Dentro de head viven las metaetiquetas que usamos para dar posicionamiento, nombre de la página
+ * ejecuta el hook wp_head
+ * 
+ * @package     cigu-theme
+ * @author      Área de Sistemas CIGU
+ * @since       1.0.0
+ * @link        https://developer.wordpress.org/reference/functions/language_attributes/
+ * @link        https://developer-wordpress-org.translate.goog/reference/functions/bloginfo/?_x_tr_sl=en&_x_tr_tl=es&_x_tr_hl=es&_x_tr_pto=tc
+ * @link        https://developer.wordpress.org/reference/functions/wp_head/
+ * @link        https://developer.wordpress.org/reference/functions/body_class/
+ * @link        https://developer.wordpress.org/reference/functions/wp_body_open/
+ * @link        https://developer.wordpress.org/reference/functions/esc_url/
  */
  language_attributes(); 
  ?>>
