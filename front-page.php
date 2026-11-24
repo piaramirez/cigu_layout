@@ -19,6 +19,7 @@ get_header();
 <main id="main-content">
     <?php get_template_part('template-parts/hero'); 
           get_template_part('template-parts/sections/noticias');
+          get_template_part('template-parts/sections/areas');
     ?>
     
 </main>

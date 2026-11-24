@@ -330,6 +330,127 @@ function cigu_customize_register( $wp_customize ) {
             'selector' => '#noticias-title',
         ));
     }
+	// =====================================================
+	// Nuestas Áreas de trabajo
+	// =====================================================
+	// Agregamosla sección para poder editar
+	$wp_customize->add_section('cigu_areas_section', array(
+		'title'			=> __('Área de trabajo', 'cigu-theme'),
+		'description'	=> __('Edita las tarjetas sobre las áreas', 'cigu-theme'),
+		'priority'		=> 27,
+	));
+	//	Activamos si se quiere mostrar o no las cards
+	$wp_customize->add_setting('cigu_areas_show', array(
+		'default'				=> true,
+		'sanitize_callback'		=> 'rest_sanitize_boolean',
+	));
+	$wp_customize->add_control('cigu_areas_show', array(
+		'label'		=> 	__('Mostrar sección Áreas de trabajo', 'cigu-theme'),
+		'section'	=> 	'cigu_areas_section',
+		'type'		=> 'checkbox',
+	));
+	// Titulo principal del post o seccion
+	$wp_customize->add_setting('cigu_area_section_title', array(
+		'default'				=> 	'Nuestras Áreas de Trabajo',
+		'sanitize_callback'		=>	'sanitize_text_field',
+	));
+	$wp_customize->add_control('cigu_area_section_title', array(
+		'label'		=>	__('Titulo de la seccion', 'cigu-theme'),
+		'section'	=>	'cigu_areas_section',
+		'type'		=>	'text',
+	));
+	/** 
+	 * @var array<int, array<string, string>> $areas_defaults Valores iniciales de las 3 tarjetas de áreas. 
+	 * 
+	*/
+	$areas_defaults = array(
+		1 => array(
+			'icon'      => 'fa-balance-scale',
+			'title'     => 'Políticas de Igualdad',
+			'desc'      => 'Desarrollo e implementación de políticas institucionales para promover la igualdad de género en todos los ámbitos universitarios.',
+			'link_text' => 'Ver políticas',
+			'url'       => '#',
+		),
+		2 => array(
+			'icon'      => 'fa-graduation-cap',
+			'title'     => 'Formación y Capacitación',
+			'desc'      => 'Programas de formación en perspectiva de género, derechos humanos y prevención de la violencia para toda la comunidad universitaria.',
+			'link_text' => 'Ver programas',
+			'url'       => '#',
+		),
+		3 => array(
+			'icon'      => 'fa-hands-helping',
+			'title'     => 'Prevención, Atención y Asesoría',
+			'desc'      => 'Servicios de atención, asesoría y acompañamiento para personas que enfrentan situaciones de violencia o discriminación.',
+			'link_text' => 'Conoce los servicios',
+			'url'       => '#',
+		),
+	);
+	// Iteración para registrar los controles de cada una de las 3 tarjetas
+	for($i = 1; $i <= 3; $i++){
+		$wp_customize->add_setting("cigu_area_{$i}_icon", array(
+			'default'				=> $areas_defaults[$i]['icon'],
+			'sanitize_callback'		=> 'sanitize_text_field'
+		));
+		$wp_customize->add_control(
+			"cigu_area_{$i}_icon",
+			array(
+				'label'       => sprintf( __( '━━ Área %d: Ícono FontAwesome ━━', 'cigu-theme' ), $i ),
+				'description' => __( 'Ejemplo: fa-balance-scale, fa-graduation-cap, fa-hands-helping', 'cigu-theme' ),
+				'section'     => 'cigu_areas_section',
+				'type'        => 'text',
+			)
+		);
+		//	Editamos los titulos
+		$wp_customize->add_setting("cigu_area_{$i}_title", array(
+			'default'			=>	$areas_defaults[$i]['title'],
+			'sanitize_callback' => 'sanitize_text_field',			
+		));
+		$wp_customize->add_control("cigu_area_{$i}_title", array(
+			'label'		=> sprintf(__('Área %d Título', 'cigu-theme'), $i),
+			'section'	=> 'cigu_areas_section',
+			'type' 		=> 'text',
+		));
+		//Ediamos la descripcion
+		$wp_customize->add_setting("cigu_area_{$i}_desc", array(
+			'default'			=> $areas_defaults[$i]['desc'],
+			'sanitize_callback'	=>	'sanitize_textarea_field',
+		));
+		$wp_customize->add_control("cigu_area_{$i}_desc", array(
+			'label'		=> sprintf(__('Área Descripción %d:', 'cigu-theme'),$i),
+			'section' 	=> 'cigu_areas_section',
+			'type'		=> 'textarea',
+		));
+		// Editamos el text de enlace
+		$wp_customize->add_setting("cigu_area_{$i}_link_text", array(
+			'default'			=> $areas_defaults[$i]['link_text'],
+			'sanitize_callback' => 'sanitize_text_field',
+		));
+		$wp_customize->add_control("cigu_area_{$i}_link_text", array(
+			'label'			=> sprintf(__('texto del botón', 'cigu-theme'), $i),
+			'section' 		=> 'cigu_areas_section',
+			'type'			=> 'text',
+		));
+		// URL del Enlace
+		$wp_customize->add_setting("cigu_area_{$i}_url", array(
+			'default'				=> $areas_defaults[$i]['url'],
+			'sanitize_callback' 	=> 'esc_url_raw',
+		));
+		$wp_customize->add_control("cigu_area_{$i}_url", array(
+			'label' 		=> sprintf(__('Url de la card:', 'cigu-theme'), $i),
+			'section' 		=> 'cigu_areas_section',
+			'type'			=> 'url,'
+		));
+	}
+	// Lapicito cute
+	if ( isset( $wp_customize->selective_refresh ) ) {
+		$wp_customize->selective_refresh->add_partial(
+			'cigu_areas_section_title',
+			array(
+				'selector' => '#areas-title',
+			)
+		);
+	}
 
 }
 add_action( 'customize_register', 'cigu_customize_register' );
