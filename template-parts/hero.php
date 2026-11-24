@@ -5,11 +5,17 @@
  * Renderiza la sección Hero de la página de inicio obteniendo los valores
  * configurados desde el Personalizador de WordPress.
  *
- * @package    cigu-theme
- * @subpackage Template_Parts
- * @author     Área de Sistemas CIGU
- * @since      1.0.0
- * @link       https://developer.wordpress.org/reference/functions/get_theme_mod/
+ * @package     cigu-theme
+ * @subpackage  Template_Parts
+ * @author      Área de Sistemas CIGU
+ * @since       1.0.0
+ * @link        https://developer.wordpress.org/reference/functions/get_theme_mod/
+ * @var string  $bg_image URL o destino de las imágenes
+ * @var string  $titulo Titulo que tiene el  baner de presentación
+ * @var string  $descripcion Datos dentro del baner, breve descripcion debajo del título
+ * @var string  $btn_text Texto que tiene el botón
+ * @var string  $btn_url url que lleva el boton
+ * @var int     $padding recibe un numero entero para modificar el padding
  */
 
 $bg_image    = get_theme_mod('cigu_hero_bg', 'https://images.unsplash.com/photo-1523580494863-6f3031224c94?ixlib=rb-4.0.3');

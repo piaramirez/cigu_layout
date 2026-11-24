@@ -1,15 +1,32 @@
 <?php
+/**
+ * Plantilla de funciones}
+ * 
+ * Crea las configuraciones básicas de la página
+ * desde donde iran los menus, nombre, descripción, etc.
+ * Asimismo desde aqupi se mandan a llamar las funciones que cargan los estiolos y el js
+ * 
+ * @package     cigu-theme
+ * @author      Área de Sistemas CIGU
+ * @since       1.0.0
+ * @link        https://developer.wordpress.org/reference/functions/add_theme_support/
+ * @link        https://developer.wordpress.org/reference/functions/register_nav_menus/
+ * @link        https://developer.wordpress.org/reference/functions/wp_enqueue_style/
+ * @link        https://developer.wordpress.org/reference/functions/get_template_directory/
+ * @link        https://developer.wordpress.org/reference/functions/get_template_directory_uri/
+ * @link        https://developer.wordpress.org/reference/functions/wp_enqueue_script/
+ */
 
 if(!defined('ABSPATH')){
     exit;
 }
-
 /**
- * Esta funcion crea las configuraciones básicas de la plantilla
- * ligas de las funciones que ocupas:
- * https://developer.wordpress.org/reference/functions/add_theme_support/
- * https://developer.wordpress.org/reference/functions/register_nav_menus/
- * 
+ * Configura las capacidades base del tema y registra las ubicaciones de menús.
+ *
+ * @since 1.0.0
+ * @link  https://developer.wordpress.org/reference/functions/add_theme_support/
+ * @link  https://developer.wordpress.org/reference/functions/register_nav_menus/
+ * @return void
  */
 function cigu_theme_setup(){
     add_theme_support('title-tag');
@@ -39,11 +56,12 @@ function cigu_theme_setup(){
 add_action('after_setup_theme', 'cigu_theme_setup');
 
 /**
- * Esta función nos permite cargar la hoja de estilos y el js
- * https://developer.wordpress.org/reference/functions/wp_enqueue_style/
- * https://developer.wordpress.org/reference/functions/get_template_directory/
- * https://developer.wordpress.org/reference/functions/get_template_directory_uri/
- * https://developer.wordpress.org/reference/functions/wp_enqueue_script/
+ * Encola las hojas de estilo (Font Awesome y main.css) y el script principal (main.js).
+ *
+ * @since 1.0.0
+ * @link  https://developer.wordpress.org/reference/functions/wp_enqueue_style/
+ * @link  https://developer.wordpress.org/reference/functions/wp_enqueue_script/
+ * @return void
  */
 function cigu_enqueue_assets(){
     wp_enqueue_style(
@@ -71,7 +89,5 @@ function cigu_enqueue_assets(){
     );
 }
 add_action('wp_enqueue_scripts', 'cigu_enqueue_assets');
-/**
- * En esta parte mandamos a llamar al archivo cutomizer, el cual nos permite editar la seccion de baner desde el boton de personalizar
- */
+//En esta parte mandamos a llamar al archivo cutomizer, el cual nos permite editar la seccion de baner desde el boton de personalizar
 require_once get_template_directory() . '/inc/customizer.php';
