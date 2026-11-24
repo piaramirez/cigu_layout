@@ -443,10 +443,13 @@ function cigu_customize_register( $wp_customize ) {
 		));
 	}
 	// Lapicito cute
-	if(isset($wp_customize->selective_refresh)){
+	if ( isset( $wp_customize->selective_refresh ) ) {
 		$wp_customize->selective_refresh->add_partial(
-			'cigu_areas_section_title', array('selector' => '#areas-title',
-			));
+			'cigu_areas_section_title',
+			array(
+				'selector' => '#areas-title',
+			)
+		);
 	}
 
 }
