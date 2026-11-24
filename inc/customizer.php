@@ -204,7 +204,42 @@ function cigu_customize_register( $wp_customize ) {
 			'label' 		=>	sprintf(__("Diapositiva %d etiqueta", "cigu-theme"),$i),
 			'section' 		=>	'cigu_carousel_section',
 		)));
+
+		$wp_customize->add_setting("cigu_slide_{$i}_tag", array(
+			'default'				=> $slide_defaults[$i]['tag'],
+			'sanitize_callback'		=> 'sanitize_text_field',
+		));
+		$wp_customize->add_control("cigu_slide_{$i}_tag", array(
+			'label' 		=>	sprintf(__("Tag de la publicación", "cigu-theme"),$i),
+			'section' 		=>	'cigu_carousel_section',
+			'type'			=> 	'text',
+		));
+        $wp_customize->add_setting("cigu_slide_{$i}_desc", array(
+            'default'           => $slide_defaults[$i]['desc'],
+            'sanitize_callback' => 'sanitize_textarea_field',
+        ));
+        $wp_customize->add_control("cigu_slide_{$i}_desc", array(
+            'label'   => sprintf(__('Diapositiva %d: Descripción', 'cigu-theme'), $i),
+            'section' => 'cigu_carousel_section',
+            'type'    => 'textarea',
+        ));
+		 $wp_customize->add_setting("cigu_slide_{$i}_url", array(
+            'default'           => $slide_defaults[$i]['url'],
+            'sanitize_callback' => 'esc_url_raw',
+        ));
+        $wp_customize->add_control("cigu_slide_{$i}_url", array(
+            'label'   => sprintf(__('Diapositiva %d: Liga (URL al dar clic)', 'cigu-theme'), $i),
+            'section' => 'cigu_carousel_section',
+            'type'    => 'url',
+        ));
+		
+
 	}
+	if (isset($wp_customize->selective_refresh)) {
+        $wp_customize->selective_refresh->add_partial('cigu_carousel_section_title', array(
+            'selector' => '#noticias-title',
+        ));
+    }
 
 }
 add_action( 'customize_register', 'cigu_customize_register' );
