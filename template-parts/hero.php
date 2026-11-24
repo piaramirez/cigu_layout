@@ -1,9 +1,15 @@
 <?php
 /**
- * Template Part: Hero
- * Obtiene los valores directo desde el panel Personalizar
- * Documentación: 
- * https://developer.wordpress.org/reference/functions/get_theme_mod/
+ * Template Part: Hero principal
+ *
+ * Renderiza la sección Hero de la página de inicio obteniendo los valores
+ * configurados desde el Personalizador de WordPress.
+ *
+ * @package    cigu-theme
+ * @subpackage Template_Parts
+ * @author     Área de Sistemas CIGU
+ * @since      1.0.0
+ * @link       https://developer.wordpress.org/reference/functions/get_theme_mod/
  */
 
 $bg_image    = get_theme_mod('cigu_hero_bg', 'https://images.unsplash.com/photo-1523580494863-6f3031224c94?ixlib=rb-4.0.3');
