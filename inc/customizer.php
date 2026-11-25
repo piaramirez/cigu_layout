@@ -572,7 +572,66 @@ function cigu_customize_register( $wp_customize ) {
 			'type' => 'url',
 		));
 	}
-		// Lapicito cute
+	// ============================================================
+	// Súmate 
+	// ============================================================
+	// Creamos la sección
+	$wp_customize->add_section('cigu_sumate_section',array(
+			'title'       => __( 'Súmate:', 'cigu-theme' ),
+			'description' => __( 'Edita la invitación final antes del pie de página.', 'cigu-theme' ),
+			'priority'    => 30,
+	));
+	// Configraciones para poder oculatar la seccion
+	$wp_customize->add_setting('cigu_sumate_show', array(
+			'default'           => true,
+			'sanitize_callback' => 'rest_sanitize_boolean',
+	));
+	$wp_customize->add_control('cigu_sumate_show', array(
+			'label'   => __( 'Mostrar Súmate en el Inicio', 'cigu-theme' ),
+			'section' => 'cigu_sumate_section',
+			'type'    => 'checkbox',
+	));
+	// Editamos el titulo
+	$wp_customize->add_setting('cigu_sumate_title', array(
+			'default'           => '¿Quieres formar parte de la CIGU?',
+			'sanitize_callback' => 'sanitize_text_field',
+	));
+	$wp_customize->add_control('cigu_sumate_title', array(
+			'label'   => __( 'Título principal', 'cigu-theme' ),
+			'section' => 'cigu_sumate_section',
+			'type'    => 'text',
+	));
+	// Editamos descripcion 
+	$wp_customize->add_setting('cigu_sumate_desc', array(
+			'default'           => 'Súmate a nuestro becariado, servicio social y voluntariado para construir juntas y juntos una universidad más igualitaria.',
+			'sanitize_callback' => 'sanitize_textarea_field',
+	));
+	$wp_customize->add_control('cigu_sumate_desc', array(
+			'label'   => __( 'Descripción', 'cigu-theme' ),
+			'section' => 'cigu_sumate_section',
+			'type'    => 'textarea',
+	));
+	// Editamos texto del boton
+	$wp_customize->add_setting('cigu_sumate_btn_text', array(
+			'default'           => 'Súmate',
+			'sanitize_callback' => 'sanitize_text_field',
+	));
+	$wp_customize->add_control('cigu_sumate_btn_text', array(
+			'label'   => __( 'Texto del botón', 'cigu-theme' ),
+			'section' => 'cigu_sumate_section',
+			'type'    => 'text',
+	));
+	// Editamos la url del boton
+	$wp_customize->add_setting('cigu_sumate_btn_url', array(
+			'default'           => '#',
+			'sanitize_callback' => 'esc_url_raw',
+	));
+	$wp_customize->add_control('cigu_sumate_btn_url',array(
+			'label'   => __( 'Liga (URL) del botón', 'cigu-theme' ),
+			'section' => 'cigu_sumate_section',
+			'type'    => 'url',
+	));
+	// Lapicito cute
 	if ( isset( $wp_customize->selective_refresh  ) ) {
 		// Nuestras áreas
 		$wp_customize->selective_refresh->add_partial('cigu_area_section_title', array(
@@ -582,6 +641,11 @@ function cigu_customize_register( $wp_customize ) {
 		$wp_customize->selective_refresh->add_partial(
 			'cigu_resources_section_title',
 			array( 'selector' => '#recursos-title' )
+		);
+		// Sumate
+		$wp_customize->selective_refresh->add_partial(
+			'cigu_sumate_title',
+			array( 'selector' => '#sumate-title' )
 		);
 	}
 
