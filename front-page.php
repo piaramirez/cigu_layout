@@ -21,6 +21,7 @@ get_header();
           get_template_part('template-parts/sections/noticias');
           get_template_part('template-parts/sections/areas');
           get_template_part('template-parts/sections/eventos');
+          get_template_part('template-parts/sections/recursos');
     ?>
     
 </main>
