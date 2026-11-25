@@ -23,10 +23,11 @@ get_header();
         get_template_part('template-parts/sections/areas');
         get_template_part('template-parts/sections/eventos');
         get_template_part('template-parts/sections/recursos');
-        get_template_part('template-parts/sections/sumate');
+      
     ?>
     
 </main>
 <?php 
+get_template_part('template-parts/sections/sumate');
 get_footer();
 ?>
