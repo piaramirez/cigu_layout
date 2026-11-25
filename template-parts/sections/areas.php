@@ -1,8 +1,15 @@
 <?php
 /**
- * 
- * 
- * 
+ * Template Part: Sección Próximos Eventos.
+ *
+ * Renderiza el contenedor de próximos eventos. Si el plugin de eventos CIGU
+ * está activo, ejecuta su shortcode; de lo contrario, muestra la maqueta base.
+ *
+ * @package    cigu-theme
+ * @subpackage Template_Parts\Sections
+ * @author     Área de Sistemas CIGU
+ * @since      1.0.0
+ * @link       https://developer.wordpress.org/reference/functions/do_shortcode/
  */
 if(!defined('ABSPATH')){
     exit;
