@@ -20,6 +20,7 @@ get_header();
     <?php get_template_part('template-parts/hero'); 
           get_template_part('template-parts/sections/noticias');
           get_template_part('template-parts/sections/areas');
+          get_template_part('template-parts/sections/eventos');
     ?>
     
 </main>
