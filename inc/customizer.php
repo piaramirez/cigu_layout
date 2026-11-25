@@ -442,13 +442,146 @@ function cigu_customize_register( $wp_customize ) {
 			'type'			=> 'url,'
 		));
 	}
-	// Lapicito cute
-	if ( isset( $wp_customize->selective_refresh ) ) {
+
+	// ==================================================
+	// Recursos Descargables
+	// ==================================================
+	//Agregamos la sección para poder edtiarlos
+	$wp_customize->add_section('cigu_resources_section', array(
+		'title' 		=> __('Seccion recursos descargables', 'cigu-theme'),
+		'description'	=> __('Edita las cards de recursos descargables', 'cigu-theme'),
+		'priority'		=> 29,
+	));
+	// Visibilidad de la sección
+	$wp_customize->add_setting('cigu_resources_show', array(
+		'default'			=> true,
+		'sanitize_callback' => 'rest_sanitize_boolean',
+	));
+	$wp_customize->add_control('cigu_resources_show', array(
+		'label' 	=> __('Mostrar sección de Recursos Descargables', 'cigu-theme'),
+		'section'	=> 'cigu_resources_section',
+		'type'		=> 'checkbox',
+
+	));
+	// Editar titulo
+	$wp_customize->add_setting('cigu_resources_section_title', array(
+		'default'				=> 'Recursos Descargables',
+		'sanitize_callback' 	=> 'sanitize_text_field',
+	));
+	$wp_customize->add_control('cigu_resources_section_title', array(
+		'label'	=> __('Titulo de la sección', 'cigu-theme'),
+		'section'	=> 'cigu_resources_section',
+		'type'		=> 'text',	
+	));
+	//editar "ver más recursos"
+	$wp_customize->add_setting('cigu_resources_btn_text', array(
+		'default'				=> 'Ver más recursos descargables',
+		'sanitize_callback'		=> 'sanitize_text_field',
+	));
+	$wp_customize->add_control('cigu_resources_btn_text', array(
+		'label'		=> __('Texto inferior del boton', 'cigu-theme'),
+		'section' 	=> 'cigu_resources_section',
+		'type' 		=> 'text' 
+	));
+	// Editar url
+	$wp_customize->add_setting('cigu_resources_btn_url', array(
+		'default'			=> '#',
+		'sanitize_callback'	=> 'esc_url_raw',
+	));
+	$wp_customize->add_control('cigu_resources_btn_url', array(
+		'label'		=> __('Liga de la url del boton de "ver mas"', 'cigu-theme'),
+		'section'	=> 'cigu_resources_section',
+		'type'		=>	'url',
+	));
+	/**
+	 * @var array<int, array <string, string>> $resources_defaults Arreglo con la información por defecto
+	 */
+	$resources_defaults = array(
+		1 => array(
+			'icon'     => 'fa-file-pdf',
+			'title'    => 'Guía de Lenguaje Inclusivo',
+			'desc'     => 'Recomendaciones para el uso de lenguaje inclusivo en comunicaciones institucionales y documentos académicos.',
+			'btn_text' => 'Descargar PDF',
+			'url'      => '#',
+		),
+		2 => array(
+			'icon'     => 'fa-book',
+			'title'    => 'Protocolo de Atención a la Violencia',
+			'desc'     => 'Protocolo institucional para la prevención, atención y sanción de casos de violencia de género en la UNAM.',
+			'btn_text' => 'Descargar PDF',
+			'url'      => '#',
+		),
+		3 => array(
+			'icon'     => 'fa-chart-bar',
+			'title'    => 'Informe Estadístico 2023',
+			'desc'     => 'Datos estadísticos sobre igualdad de género, participación y casos atendidos en la comunidad universitaria.',
+			'btn_text' => 'Descargar PDF',
+			'url'      => '#',
+		),
+	);
+	// iteración con los datos a editar
+	for($i = 1; $i<=3; $i++){
+		// Editar Icono
+		$wp_customize->add_setting("cigu_resource_{$i}_icon", array(
+			'default'			=>	$resources_defaults[$i]['icon'],
+			'sanitize_callback' =>	'sanitize_text_field',
+		));
+		$wp_customize->add_control("cigu_resource_{$i}_icon", array(
+			'label' 	=> sprintf(__('Aquí puedes editar el ícono %d:', 'cigu-theme'), $i),
+			'section' 	=> 'cigu_resources_section',
+			'type' 		=>'text',
+		));
+		// Editar Texto
+		$wp_customize->add_setting("cigu_resource_{$i}_title", array(
+			'default'	=> $resources_defaults[$i]['title'],
+			'sanitize_callback' => 'sanitize_text_field',
+		));
+		$wp_customize->add_control("cigu_resource_{$i}_title", array(
+			'label'		=> sprintf(__('Edita el título', 'cigu-theme'),$i),
+			'section' 	=> 'cigu_resources_section',
+			'type'		=> 'text',
+		));
+		//editar descripcion
+		$wp_customize->add_setting("cigu_resource_{$i}_desc", array(
+			'default'			=> $resources_defaults[$i]['desc'],
+			'sanitize_callback' => 'sanitize_textarea_field',
+		));
+		$wp_customize->add_control("cigu_resource_{$i}_desc", array(
+			'label' => sprintf(__('Edita la descripción %d', 'cigu-theme'),$i),
+			'section' => 'cigu_resources_section',
+			'type'	=> 'textarea',
+		));
+		// Editar btn_text
+		$wp_customize->add_setting("cigu_resource_{$i}_btn_text", array(
+			'default' 			=> $resources_defaults[$i]['btn_text'],
+			'sanitize_callback' => 'sanitize_text_field',
+		));
+		$wp_customize->add_control("cigu_resource_{$i}_btn_text",array(
+			'label' 	=> sprintf(__('Personaliza el texto', 'cigu-theme'), $i),
+			'section' 	=>'cigu_resources_section',
+			'type'		=> 'text',
+		));
+		// editar url
+		$wp_customize->add_setting("cigu_resource_{$i}_btn_url", array(
+			'default' 			=> $resources_defaults[$i]['url'],
+			'sanitize_callback'	=> 'esc_url_raw',
+		));
+		$wp_customize->add_control("cigu_resource_{$i}_btn_url", array(
+			'label' => sprintf(__('Recurso %d: Liga del PDF (URL)','cigu-theme'), $i),
+			'section' => 'cigu_resources_section',
+			'type' => 'url',
+		));
+	}
+		// Lapicito cute
+	if ( isset( $wp_customize->selective_refresh  ) ) {
+		// Nuestras áreas
+		$wp_customize->selective_refresh->add_partial('cigu_area_section_title', array(
+			'selector' => '#areas-title',
+		));
+		// Recursos
 		$wp_customize->selective_refresh->add_partial(
-			'cigu_areas_section_title',
-			array(
-				'selector' => '#areas-title',
-			)
+			'cigu_resources_section_title',
+			array( 'selector' => '#recursos-title' )
 		);
 	}
 

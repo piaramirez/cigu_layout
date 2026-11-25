@@ -1,9 +1,21 @@
 <?php
 /**
- * 
- * 
+ * Template Part: Sección Recursos Descargables.
+ *
+ * Renderiza la cuadrícula de documentos y recursos en PDF descargables
+ * obteniendo sus valores desde el Personalizador de WordPress.
+ *
+ * @package    cigu-theme
+ * @subpackage Template_Parts\Sections
+ * @author     Área de Sistemas CIGU
+ * @since      1.0.0
+ * @link       https://developer.wordpress.org/reference/functions/get_theme_mod/
+ *
+ * @var bool   $show_resources  Determina si la sección de recursos se muestra en el inicio.
+ * @var string $resources_title Título principal de la sección.
+ * @var string $btn_more_text   Texto del botón inferior para ver más recursos.
+ * @var string $btn_more_url    URL del botón inferior.
  */
-
 if(!defined('ABSPATH')){
     exit;
 }
